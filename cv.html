@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Richard CHIU Yui Hoi - Full Stack Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #4f46e5;
+            --dark: #1e293b;
+            --darker: #0f172a;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+            --light-gray: #e2e8f0;
+            --border: #cbd5e1;
+            --success: #10b981;
+        }
+        
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+        }
+        
+        body { 
+            font-family: 'Segoe UI', 'Roboto', system-ui, sans-serif; 
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #f1f5f9;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .resume-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--darker), var(--primary-dark));
+            color: white;
+            padding: 2.5rem 3rem;
+            position: relative;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .name-title {
+            flex: 1;
+        }
+        
+        h1 { 
+            font-size: 2.8rem; 
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tagline {
+            font-size: 1.35rem;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+        
+        .contact {
+            text-align: right;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            margin-bottom: 0.5rem;
+            gap: 0.7rem;
+        }
+        
+        .contact i {
+            width: 24px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        
+        .decoration {
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 100%;
+            opacity: 0.08;
+        }
+        
+        .decoration svg {
+            height: 100%;
+        }
+        
+        section {
+            padding: 2rem 3rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        section:last-child {
+            border-bottom: none;
+        }
+        
+        h2 {
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        h2::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, var(--primary), transparent);
+            margin-left: 12px;
+        }
+        
+        .card {
+            background: var(--light);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.03);
+            border-left: 4px solid var(--primary);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .card h3 {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .date {
+            color: var(--primary);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        
+        ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        li {
+            margin-bottom: 0.75rem;
+            position: relative;
+        }
+        
+        li::before {
+            content: "•";
+            color: var(--primary);
+            font-weight: bold;
+            position: absolute;
+            left: -1rem;
+        }
+        
+        .tech-stack {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            border: 1px solid var(--border);
+        }
+        
+        .tech-stack-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .tech-stack-title i {
+            color: var(--primary);
+        }
+        
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 0.8rem;
+        }
+        
+        .tech-item {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 0.6rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            text-align: center;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        
+        .tech-item:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(37, 99, 235, 0.2);
+            border-color: var(--primary);
+        }
+        
+        .tech-icon {
+            font-size: 0.9rem;
+        }
+        
+        .languages {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .language-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            border-radius: 10px;
+            background: white;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            min-width: 120px;
+        }
+        
+        .language-item i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 0.7rem;
+        }
+        
+        .language-level {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-top: 0.3rem;
+        }
+        
+        @media (max-width: 768px) {
+            .resume-container {
+                margin: 0;
+                border-radius: 0;
+            }
+            
+            header {
+                padding: 1.8rem;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1.5rem;
+            }
+            
+            .contact {
+                text-align: left;
+                width: 100%;
+            }
+            
+            .contact-item {
+                justify-content: flex-start;
+            }
+            
+            section {
+                padding: 1.5rem;
+            }
+            
+            .card h3 {
+                flex-direction: column;
+                gap: 0.3rem;
+            }
+            
+            .date {
+                align-self: flex-end;
+            }
+        }
+        
+        .print-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+        
+        .print-button:hover {
+            background: var(--primary-dark);
+            transform: scale(1.1);
+        }
+        
+        .achievement-badge {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+        
+        .page-break {
+            page-break-before: always;
+            break-before: page;
+        }
+    </style>
+</head>
+<body>
+    <button class="print-button" onclick="window.print()">
+        <i class="fas fa-print"></i>
+    </button>
+    
+    <div class="resume-container">
+        <header>
+            <div class="decoration">
+                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="white" d="M43.7,-67.1C55.4,-60.1,62.8,-44.5,69.3,-28.6C75.8,-12.7,81.4,3.5,79.9,19.2C78.5,35,70.1,50.3,58.1,61.4C46.1,72.5,30.5,79.5,14.2,83.2C-2.1,86.8,-19.1,87.2,-33.3,80.5C-47.5,73.9,-59,60.2,-66.5,44.8C-74.1,29.4,-77.8,12.4,-78.5,-5.2C-79.3,-22.8,-77.2,-41.2,-67.9,-54.3C-58.7,-67.5,-42.3,-75.4,-26.8,-80.6C-11.3,-85.7,3.4,-88.1,43.7,-67.1Z" transform="translate(100 100)" />
+                </svg>
+            </div>
+            <div class="header-content">
+                <div class="name-title">
+                    <h1>Richard CHIU Yui Hoi</h1>
+                    <p class="tagline">Full Stack Developer</p>
+                </div>
+                <div class="contact">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+852 51844290</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>www.51844290@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Hong Kong</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <section>
+            <h2><i class="fas fa-briefcase"></i> Work Experience</h2>
+            
+            <div class="card">
+                <h3>
+                    <span>Go Developer - Hong Kong Nova</span>
+                    <span class="date">08/2024 - Present</span>
+                </h3>
+                <ul>
+                    <li>Maintain and optimize a high-traffic e-commerce platform</li>
+                    <li>Reconstructed message center architecture, reducing database operations</li>
+                    <li>Developed scheduled tasks for user spending rebate and VIP leveling</li>
+                    <li>Developed user status system including online, offline, kick, ban</li>
+                </ul>
+                <div class="tech-stack">
+                    <div class="tech-stack-title">
+                        <i class="fas fa-code"></i>
+                        <span>Technical Stack:</span>
+                    </div>
+                    <div class="tech-grid">
+                        <span class="tech-item">Go/Golang</span>
+                        <span class="tech-item">Gin Framework</span>
+                        <span class="tech-item">go-zero RPC</span>
+                        <span class="tech-item">Kafka</span>
+                        <span class="tech-item">WebSocket</span>
+                        <span class="tech-item">GORM</span>
+                        <span class="tech-item">Redis</span>
+                        <span class="tech-item">MySQL</span>
+                        <span class="tech-item">Temporal</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>
+                    <span>Frontend Developer - PCCW</span>
+                    <span class="date">06/2023 - 10/2023</span>
+                </h3>
+                <ul>
+                    <li>Maintained React/React Native codebase for shopping platform with 100k+ active users</li>
+                    <li>Developed cross-platform inbox system integrating with native modules</li>
+                    <li>Implemented new features and resolved critical bugs in production environment</li>
+                </ul>
+                <div class="tech-stack">
+                    <div class="tech-stack-title">
+                        <i class="fas fa-code"></i>
+                        <span>Technical Stack:</span>
+                    </div>
+                    <div class="tech-grid">
+                        <span class="tech-item">React</span>
+                        <span class="tech-item">React Native</span>
+                        <span class="tech-item">AWS</span>
+                        <span class="tech-item">Swift</span>
+                        <span class="tech-item">Objective-C</span>
+                        <span class="tech-item">Java</span>
+                        <span class="tech-item">GraphQL</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>
+                    <span>Frontend Developer - Property Tech</span>
+                    <span class="date">05/2022 - 08/2022</span>
+                </h3>
+                <ul>
+                    <li>Designed and implemented foundational architecture for property trading platform</li>
+                    <li>Created responsive UI components for both mobile app and web interface</li>
+                    <li>Established CI/CD pipeline for continuous deployment</li>
+                </ul>
+                <div class="tech-stack">
+                    <div class="tech-stack-title">
+                        <i class="fas fa-code"></i>
+                        <span>Technical Stack:</span>
+                    </div>
+                    <div class="tech-grid">
+                        <span class="tech-item">Flutter</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <h2><i class="fas fa-code-branch"></i> Projects</h2>
+            
+            <div class="card">
+                <h3>
+                    <span>ZINC Autograder System - HKUST</span>
+                    <span class="date">01/2024 - 08/2024</span>
+                </h3>
+                <ul>
+                    <li>Developed container-based assignment grading system supporting C/C++/Java/Python</li>
+                    <li>Architected scalable backend with container orchestration support</li>
+                    <li>Implemented secure sandbox environment with monitoring capabilities</li>
+                </ul>
+                <div class="tech-stack">
+                    <div class="tech-stack-title">
+                        <i class="fas fa-code"></i>
+                        <span>Technical Stack:</span>
+                    </div>
+                    <div class="tech-grid">
+                        <span class="tech-item">Go</span>
+                        <span class="tech-item">Docker</span>
+                        <span class="tech-item">Kubernetes</span>
+                        <span class="tech-item">Nomad</span>
+                        <span class="tech-item">Temporal</span>
+                        <span class="tech-item">Minio</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>
+                    <span>Robotics Systems - HKUST Robotics Team</span>
+                    <span class="date">10/2021 - 08/2022</span>
+                </h3>
+                <ul>
+                    <li>Designed STM32-based task robot with Bluetooth communication and PID control</li>
+                    <li>Developed racing robot with computer vision pipeline using image processing algorithms</li>
+                    <li>Programmed humanoid robot locomotion with precise motion control</li>
+                </ul>
+                <div class="tech-stack">
+                    <div class="tech-stack-title">
+                        <i class="fas fa-code"></i>
+                        <span>Technical Stack:</span>
+                    </div>
+                    <div class="tech-grid">
+                        <span class="tech-item">STM32</span>
+                        <span class="tech-item">Bluetooth</span>
+                        <span class="tech-item">PID Control</span>
+                        <span class="tech-item">C++</span>
+                        <span class="tech-item">Python</span>
+                        <span class="tech-item">OpenCV</span>
+                        <span class="tech-item">Gaussian/Canny</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>
+                    <span>SIGHT Website Revamp - HKUST SIGHT</span>
+                    <span class="date">10/2022 - 08/2024</span>
+                </h3>
+                <ul>
+                    <li>Re-engineered NGO website with modern frontend framework and CMS</li>
+                    <li>Integrated database and cloud storage for efficient content management</li>
+                    <li>Optimized website performance for global volunteers and donors</li>
+                </ul>
+                <div class="tech-stack">
+                    <div class="tech-stack-title">
+                        <i class="fas fa-code"></i>
+                        <span>Technical Stack:</span>
+                    </div>
+                    <div class="tech-grid">
+                        <span class="tech-item">Next.js</span>
+                        <span class="tech-item">Tailwind CSS</span>
+                        <span class="tech-item">Payload CMS</span>
+                        <span class="tech-item">PostgreSQL</span>
+                        <span class="tech-item">Minio Storage</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <h2><i class="fas fa-graduation-cap"></i> Education</h2>
+            
+            <div class="card">
+                <h3>
+                    <span>BSc Mathematics with Computer Science - HKUST</span>
+                    <span class="date">09/2020 - 09/2024</span>
+                </h3>
+                <ul>
+                    <li>Robotics Team: Developed embedded systems using STM32 microcontrollers</li>
+                    <li>SIGHT: Organized capacity-building programs for Thai village children</li>
+                    <li>Coursework: Algorithms, Data Structures, Machine Learning, Software Engineering</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section>
+            <h2><i class="fas fa-language"></i> Languages</h2>
+            
+            <div class="languages">
+                <div class="language-item">
+                    <strong>English</strong>
+                    <div class="language-level">Professional Fluency</div>
+                </div>
+                
+                <div class="language-item">
+                    <strong>Cantonese</strong>
+                    <div class="language-level">Native Speaker</div>
+                </div>
+                
+                <div class="language-item">
+                    <strong>Mandarin</strong>
+                    <div class="language-level">Native Speaker</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Simple animation for tech items
+        document.addEventListener('DOMContentLoaded', function() {
+            const techItems = document.querySelectorAll('.tech-item');
+            
+            techItems.forEach((item, index) => {
+                // Add staggered animation
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(10px)';
+                
+                setTimeout(() => {
+                    item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, 100 + index * 50);
+            });
+        });
+    </script>
+</body>
+</html>
